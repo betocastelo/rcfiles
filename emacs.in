@@ -1,0 +1,63 @@
+;; Reload your settings after editing wihout restarting emacs with
+;; M-x eval-buffer.
+
+(let ((default-directory "/usr/local/share/emacs/site-lisp"))
+  (normal-top-level-add-subdirs-to-load-path))
+
+;; (let ((default-directory "/Users/acastelo/.emacs.d/site-lisp"))
+;;   (normal-top-level-add-subdirs-to-load-path))
+
+(require 'cmake-mode)
+(add-to-list 'auto-mode-alist '("\\CmakeLists.txt\\'" . cmake-mode))
+
+(autoload 'markdown-mode "~/.emacs.d/site-lisp/markdown-mode"
+  "Major mode for editing Markdown files" t)
+(add-to-list 'auto-mode-alist '("\\.md\\'" . markdown-mode))
+
+;; (require 'markdown-mode)
+;; (add-to-list 'auto-mode-alist '("\\.md\\'" . markdown-mode))
+
+(require 'package)
+(add-to-list 'package-archives
+         '("melpa-stable" . "https://stable.melpa.org/packages/") t)
+(package-initialize)
+
+;;(require 'yaml-mode)
+(autoload 'yaml-mode "~/.emacs.d/site-lisp/yaml-mode"
+  "Major mode for editing Yaml files" t)
+(add-to-list 'auto-mode-alist '("\\.yml\\'" . yaml-mode))
+
+(add-hook 'yaml-mode-hook
+      '(lambda ()
+        (define-key yaml-mode-map "\C-m" 'newline-and-indent)))
+
+(defun sevone-indent-hook ()
+  (setq indent-tabs-mode t)
+  (setq tab-width 4))
+
+(add-hook 'sh-mode-hook 'sevone-indent-hook
+	  (lambda () (setq sh-basic-offset 4)))
+(add-hook 'c++-mode-hook 'sevone-indent-hook)
+
+(setq ring-bell-function 'ignore)
+
+(setq column-number-mode t)
+
+(setq mouse-wheel-scroll-amount '(1 ((shift) . 1))) ;; one line at a time
+
+;; (setq mouse-wheel-progressive-speed nil) ;; don't accelerate scrolling
+
+(setq mouse-wheel-follow-mouse 't) ;; scroll window under mouse
+
+(custom-set-variables
+ ;; custom-set-variables was added by Custom.
+ ;; If you edit it by hand, you could mess it up, so be careful.
+ ;; Your init file should contain only one such instance.
+ ;; If there is more than one, they won't work right.
+ '(make-backup-files nil))
+(custom-set-faces
+ ;; custom-set-faces was added by Custom.
+ ;; If you edit it by hand, you could mess it up, so be careful.
+ ;; Your init file should contain only one such instance.
+ ;; If there is more than one, they won't work right.
+ )

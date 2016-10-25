@@ -1,0 +1,40 @@
+# The following lines were added by compinstall
+
+zstyle ':completion:*' completer _expand _complete _ignored
+zstyle ':completion:*' completions 1
+zstyle ':completion:*' list-colors ''
+zstyle ':completion:*' matcher-list '' 'm:{[:lower:]}={[:upper:]}'
+zstyle ':completion:*' max-errors 1
+zstyle ':completion:*' menu select=1
+zstyle ':completion:*' select-prompt %SScrolling active: current selection at %p%s
+zstyle ':completion:*' substitute 1
+zstyle :compinstall filename '/home/castelo/.zshrc'
+
+autoload -Uz compinit
+compinit
+# End of lines added by compinstall
+# Lines configured by zsh-newuser-install
+HISTFILE=~/.histfile
+HISTSIZE=10000
+SAVEHIST=10000
+setopt appendhistory
+unsetopt beep
+bindkey -e
+# End of lines configured by zsh-newuser-install
+
+# Aliases
+alias ls='ls -G'
+alias l='ls -lt'
+alias la='ls -lat'
+# End of aliases
+
+PROMPT='%S%m%s %2C[%h]> '
+
+# Ignore the first nine ctrl-D
+setopt ignoreeof
+
+# From man zshoptions:
+# HIST_IGNORE_ALL_DUPS If a new command line being added to the
+# history list duplicates an older one, the older command is removed
+# from the list (even if it is not the pre- vious event).
+setopt histignorealldups
